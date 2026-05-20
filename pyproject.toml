@@ -1,0 +1,48 @@
+[project]
+name = "aivsai"
+version = "0.1.0"
+description = "AI vs AI — adaptive adversarial testing for LLM applications. Open-source prompt-injection red-teaming with a closed-loop attacker."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "AI vs AI contributors" }]
+requires-python = ">=3.10"
+keywords = ["llm", "security", "red-team", "prompt-injection", "ai-safety", "ollama"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Security",
+]
+
+dependencies = [
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.27",
+    "httpx[http2]>=0.27",
+    "pydantic>=2.6",
+    "websockets>=12.0",
+    "python-multipart>=0.0.9",
+    "jinja2>=3.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.4",
+]
+
+[project.scripts]
+aivsai = "aivsai.main:run"
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["aivsai*"]
+
+[tool.setuptools.package-data]
+aivsai = ["static/*", "static/**/*"]
